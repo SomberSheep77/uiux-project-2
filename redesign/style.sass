@@ -1,0 +1,423 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+$dark-green: #193C34
+$off-white: #F4F3EF
+$off-white-dark: #EAE8E0
+$light-green: #2B704F
+$red: #B02B2D
+
+.row-container
+  width: 100%
+  display: flex
+  flex-direction: row
+
+body
+  color: black
+  background-color: $off-white
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  overflow-x: hidden
+
+.locate-banner
+  position: relative
+  // z-index: 2
+  height: max(50px, 4vh)
+  font-size: max(1rem, 1vw)
+  align-items: center
+  padding: 0 3vw
+  color: $off-white
+  background-color: $dark-green
+  & > div
+    cursor: pointer
+    padding: 0 1rem
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: opacity .4s ease-in-out
+    &:hover
+      opacity: .7
+    &:first-child
+      padding-left: 0
+    &:last-child
+      padding-right: 0
+  .burger-item
+    @media (max-width: 821px)
+      display: none
+  span
+    padding-right: .125rem
+  img
+    height: 1.25rem
+
+.right
+  margin-left: auto
+
+.icon-banner
+  position: sticky
+  top: 0
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  align-items: center
+  color: black
+  padding: 1rem 3vw
+  border-bottom: .5px solid black
+  background-color: $off-white
+  .burger-item
+    @media (max-width: 821px)
+      display: none
+  .icon
+    height: clamp(2rem, 4vh, 4rem)
+    margin: .5rem 1rem
+    cursor: pointer
+    &:first-child
+      margin: 0 1rem -.25em 1rem
+    &:nth-child(2)
+      margin-left: 0
+    &:last-child
+      margin-right: 0
+    &:nth-last-child(2)
+      @media (max-width: 821px)
+        margin-left: auto
+    @media (max-width: 821px)
+      &:first-child
+        margin-left: 0
+    img
+      height: 100%
+
+.hamburger-menu
+  display: none
+  height: fit-content
+  @media (max-width: 821px)
+    display: inline
+  .hamburger-lines
+    height: 24px
+    width: 32px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    position: relative
+    z-index: 100
+    // transform: translateZ(1px)
+    .line
+      width: 100%
+      height: 4px
+      border-radius: 8px
+      background-color: black
+      &:first-child
+        transform-origin: left top
+        transition: transform 0.4s ease-in-out
+      &:nth-child(2)
+        transition: transform 0.2s ease-in-out
+      &:last-child
+        transform-origin: left bottom
+        transition: transform 0.4s ease-in-out
+  input[type="checkbox"]
+    cursor: pointer
+    position: relative
+    z-index: 101
+    position: absolute
+    height: 24px
+    width: 40px
+    opacity: 0
+    &:checked
+      & ~ .menu-items
+        transform: translateX(0)
+      & ~ .hamburger-lines
+        // background-color: blue
+        .line
+          width: 94%
+        .line:first-child
+          transform: rotate(45deg)
+        .line:nth-child(2)
+          transform: scaleY(0)
+        .line:last-child
+          transform: rotate(-45deg)
+  .menu-items
+    position: absolute
+    height: 100vh
+    // padding-top: 300px
+    padding: 300px 0 0 3vw
+    background: $off-white
+    top: -200px
+    left: 0
+    z-index: 2
+    box-sizing: content-box
+    // padding-top: 100px
+    // box-sizing: content-box
+    width: 60vw
+    transform: translate(-150%)
+    display: flex
+    flex-direction: column
+    transition: transform 0.5s ease-in-out
+    li
+      list-style: none
+      margin: .5em
+      font-size: 24px
+      transition: font-weight 0.5s ease-in-out
+      &:hover
+        font-weight: 600
+
+.chip-menu
+  position: fixed
+  height: 100vh
+  background: $off-white
+  top: 0
+  left: 100%
+  z-index: 2
+  width: 40vw
+  padding: 2vw
+  display: flex
+  flex-direction: column
+  transition: left 0.5s ease-in-out
+  img
+    width: 2rem
+    margin-left: auto
+    cursor: pointer
+  li
+    list-style: none
+    
+.active
+  .chip-menu
+    left: 60%
+      
+.search
+  margin: 0 auto
+  width: 60%
+  display: flex
+  flex-direction: column
+  @media (max-width: 821px)
+    order: 1
+    width: 100%
+
+.search-bar
+  display: flex
+  flex-direction: row
+  border: 1px solid black
+  border-radius: 8px
+  input
+    flex: 1
+    justify-self: center
+    border: none
+    font-size: max(1rem, 1vw)
+    background-color: $off-white-dark
+    font-weight: 300
+    padding: .25em
+    line-height: 1.75rem
+    border-radius: 8px 0 0 8px
+    &:focus
+      outline: none
+  button
+    cursor: pointer
+    background-color: $off-white-dark
+    border: none
+    border-left: .5px solid black
+    padding: .25rem
+    border-radius: 0 8px 8px 0
+    img
+      height: clamp(2rem, 4vh, 4rem)
+
+.search-results
+  height: 0
+  position: relative
+  .results
+    padding: 0 .5em
+    background-color: $off-white
+    border-radius: 0 0 8px 8px
+    h1
+      font-weight: 600
+      padding: .5em 0
+      font-size: max(1.25rem, 1.25vw)
+    .result
+      font-size: max(1rem, 1vw)
+      padding: .5em 0
+      border-bottom: 1px solid black
+      &:hover
+        text-decoration: underline
+      img
+        align-self: flex-end
+        float: right
+        height: 1.5rem
+    h2
+      font-weight: 600
+      line-height: 3rem
+      font-size: max(1rem, 1vw)
+      &:hover
+        text-decoration: underline
+    
+
+.num-results
+  cursor: default
+  font-weight: 600
+  font-size: max(1.5rem, 1.5vw)
+
+.chips
+  padding: 1rem 0
+  & > div
+    margin: .5rem 1rem
+    @media (max-width: 860px)
+      margin: .25rem .5rem
+    &:first-child
+      margin-left: 0
+    &:last-child
+      margin-right: 0
+      margin-left: auto
+
+.chip
+  font-size: max(.75rem, 1vw)
+  width: fit-content
+  padding: .5em 1em
+  border-radius: 2rem
+  border: 1px solid black
+  cursor: pointer
+  font-weight: 400
+  // min-width: 5rem
+  &:hover
+    // border: 2px solid black
+    text-shadow: 0 0 .2px black, 0 0 .2px black
+    border: 2px solid black
+    margin: calc(.5rem - 1px) calc(1rem - 1px)
+    @media (max-width: 860px)
+      margin: calc(.25rem - 1px) calc(.5rem - 1px)
+    &:first-child
+      margin-left: -1px
+    &:last-child
+      margin-right: -1px
+      margin-left: auto
+.container
+  padding: 0 6vw
+
+.items
+  width: 100%
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  gap: 3rem
+  padding: 1rem 0
+  @media (min-width: 1800px)
+    grid-template-columns: repeat(5, 1fr)
+  @media (max-width: 821px)
+    grid-template-columns: repeat(3, 1fr)
+  @media (max-width: 480px)
+    grid-template-columns: repeat(1, 1fr)
+
+.paginate
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  gap: 1em
+  border-top: 1px solid black
+  border-bottom: 1px solid black
+  font-size: max(1.25rem, 1.25vw)
+  *
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: .5em 0
+    cursor: pointer
+  span
+    // padding: .5rem
+    width: 2em
+    height: 2em
+    border: 1px solid black
+    border-radius: max(4px, .2vw)
+    transition: color .5s ease-in-out
+    transition: background-color .5s ease-in-out
+    &.active, &:hover
+      background-color: $off-white-dark
+      color: $red
+  img
+    &:first-child
+      transform: rotate(90deg)
+    &:last-child
+      transform: rotate(-90deg)
+
+.recently-viewed
+  padding-bottom: 2rem
+  & > h1
+    padding: .75em 0
+    font-size: max(2rem, 2vw)
+  .recent-items
+    display: flex
+    flex-direction: row
+    gap: 2vw
+    overflow-x: scroll
+    .item
+      min-width: 17vw
+      @media (min-width: 1800px)
+        min-width: 15vw
+      @media (max-width: 480px)
+        min-width: 80vw
+    .item__price
+      font-weight: 600
+      sup
+        font-size: max(1rem, 1.25vw)
+        vertical-align: max(.5rem, .5vw)
+      .price
+        font-size: max(1.75rem, 1.75vw)
+      .unit-price
+        font-size: max(.75rem, .75vw)
+    .item__button
+      font-size: max(.75rem, .75vw)
+
+
+.item
+  img
+    width: 100%
+    cursor: pointer
+  .item__name
+    cursor: default
+    font-weight: 400
+    font-size: max(1rem, 1.25vw)
+  .item__price
+    cursor: default
+    font-weight: 600
+    sup
+      cursor: default
+      font-size: max(1.25rem, 1.5vw)
+      vertical-align: max(.5rem, .5vw)
+    .price
+      cursor: default
+      font-size: max(2rem, 2vw)
+    .unit-price
+      cursor: default
+      font-size: max(.75rem, .75vw)
+  .item__button
+    color: $off-white
+    background-color: $light-green
+    font-size: max(1rem, 1vw)
+    padding: .5rem 1rem
+    border-radius: 8px
+    border: none
+    cursor: pointer
+    width: fit-content
+    transition: background-color .4s ease-in-out
+    &:hover
+      background-color: $dark-green
+  @media (max-width: 480px)
+    display: flex
+    gap: .5em
+    & > div
+      flex: 1
+    .item__content
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+    .item__name
+      font-size: max(1.25rem, 1.25vw)
+
+.blur::before
+  content: ""
+  position: fixed
+  z-index: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, .4)
+
+.hidden
+  display: none
+
+.lower-z
+  z-index: -1
